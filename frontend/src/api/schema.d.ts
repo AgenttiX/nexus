@@ -126,6 +126,27 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/config/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * @description Return the OpenID Connect issuer and the public client id for the mobile app.
+         *
+         *     Both are empty when the mobile app is not enabled on this server.
+         */
+        get: operations["config_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/finance/accounts/": {
         parameters: {
             query?: never;
@@ -703,6 +724,10 @@ export interface components {
             category: string;
             /** Format: decimal */
             total: string;
+        };
+        Config: {
+            oidc_issuer: string;
+            oidc_client_id: string;
         };
         /** @description A newly created agent token, including the secret. Shown exactly once. */
         CreatedAgentToken: {
@@ -1370,6 +1395,25 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Event"][];
+                };
+            };
+        };
+    };
+    config_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Config"];
                 };
             };
         };

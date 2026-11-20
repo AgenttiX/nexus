@@ -31,9 +31,37 @@ Settings → MFA Devices.
 
 ## Android
 
-Planned: the app signs in with OIDC authorization code flow and PKCE through
-the system browser, so passkeys work as they do in Chrome, and sends the
-resulting token to the API.
+The app is the web interface packaged with Capacitor, so it cannot use the
+browser's session cookie. It signs in with OpenID Connect instead:
+
+1. On first start the app asks for the address of the Nexus server and reads
+   `/api/config/` from it, which names the Authentik issuer and the app's
+   client id. One build of the app therefore works with any deployment.
+2. "Sign in with a passkey" opens Authentik in the system browser
+   (authorization code flow with PKCE, RFC 8252). The login flow is the same
+   passkey-only flow as in the browser, and the app never sees a credential.
+3. Authentik returns to the app through the address
+   `fi.agx.nexus://oauth/callback`, and the app exchanges the code for an
+   access token and a refresh token. They are kept in the device's secure
+   storage, encrypted with a key in the Android Keystore, and are excluded
+   from backups.
+4. The app sends the access token with every API request. Django checks its
+   signature against Authentik's published keys, and its issuer, audience and
+   expiry, so a token issued for another application is refused. Access tokens
+   last ten minutes and are renewed with the refresh token, which lasts 30 days.
+
+In Authentik the app is its own public client, `Nexus Android`, created by
+`authentik/blueprints/nexus-providers.yaml`. Its id is `OIDC_MOBILE_CLIENT_ID`
+(default `nexus-android`). A person is the same Nexus user in the browser and
+in the app, as both logins are matched by Authentik's subject identifier.
+
+The app's pages are served from inside the app at the origin
+`https://localhost`, so the API allows that origin for cross-origin requests
+(`/api/` only, without cookies).
+
+The app reaches the server like any other client, so with the default Nginx
+configuration the phone must be on an allowed network, for example through a
+VPN.
 
 ## Agents
 

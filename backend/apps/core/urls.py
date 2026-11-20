@@ -2,8 +2,9 @@
 
 from django.urls import path
 
-from apps.core.views import HealthView
+from apps.core.views import ConfigView, HealthView
 
 urlpatterns = [
     path("health/", HealthView.as_view(), name="health"),
+    path("config/", ConfigView.as_view(), name="config"),
 ]

@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     "rest_framework",
     "django_filters",
     "drf_spectacular",
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.csp.ContentSecurityPolicyMiddleware",
     # WhiteNoise answers static files itself, so it sits after the middleware whose
     # response headers those files must also carry.
@@ -164,8 +166,21 @@ LLM_DEFAULT_MODEL = env("LLM_DEFAULT_MODEL", "")
 # How many articles are summarised at the same time in the parallel digest mode.
 NEWS_PARALLEL_SESSIONS = int(env("NEWS_PARALLEL_SESSIONS", "4"))
 
+# The Android app: a public OIDC client of its own in Authentik, whose access tokens the API
+# accepts as bearer tokens. Empty client id: the app cannot sign in to this server.
+OIDC_MOBILE_CLIENT_ID = env("OIDC_MOBILE_CLIENT_ID", "")
+OIDC_MOBILE_ISSUER = env("OIDC_MOBILE_ISSUER", "")
+# The app's pages are served from inside the app, at this origin, so its API calls are
+# cross-origin. Only the API is opened to it, and without cookies: it authenticates with tokens.
+CORS_ALLOWED_ORIGINS = ["https://localhost"] if OIDC_MOBILE_CLIENT_ID else []
+CORS_URLS_REGEX = r"^/api/"
+CORS_ALLOW_CREDENTIALS = False
+
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": ["rest_framework.authentication.SessionAuthentication"],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "apps.accounts.authentication.OIDCBearerAuthentication",
+    ],
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],

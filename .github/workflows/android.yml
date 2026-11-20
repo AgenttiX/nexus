@@ -40,6 +40,14 @@ jobs:
         working-directory: frontend/android
         run: ./gradlew assembleDebug
 
+      - name: Keep the debug APK for trying the change on a device
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v5
+        with:
+          name: nexus-debug-apk
+          path: frontend/android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 7
+
       # The signing key lives only in repository secrets, never in the repository.
       - name: Build signed release APK
         if: github.event_name == 'push'
@@ -51,7 +59,10 @@ jobs:
           KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
           echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/release.jks"
+          # Android installs an update only when its version code is higher than the installed one.
           ./gradlew assembleRelease \
+            -PversionCode="$GITHUB_RUN_NUMBER" \
+            -PversionName="${GITHUB_REF_NAME#v}" \
             -Pandroid.injected.signing.store.file="$RUNNER_TEMP/release.jks" \
             -Pandroid.injected.signing.store.password="$KEYSTORE_PASSWORD" \
             -Pandroid.injected.signing.key.alias="$KEY_ALIAS" \

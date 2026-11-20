@@ -13,10 +13,14 @@
     "gen:api": "cd ../backend && uv run python manage.py spectacular --validate --fail-on-warn --file ../frontend/openapi.yaml && cd ../frontend && npx --yes openapi-typescript@7.13.0 openapi.yaml -o src/api/schema.d.ts"
   },
   "dependencies": {
+    "@aparajita/capacitor-secure-storage": "^8.0.1",
     "@capacitor/android": "^8.6.2",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/browser": "^8.0.5",
     "@capacitor/core": "^8.6.2",
     "@tanstack/react-query": "^5.108.2",
     "@tanstack/react-router": "^1.170.46",
+    "oauth4webapi": "^3.8.9",
     "openapi-fetch": "^0.17.0",
     "plotly.js-basic-dist-min": "^4.3.0",
     "react": "^19.3.1",

@@ -17,3 +17,7 @@ TIME_ZONE = "Europe/Helsinki"
 
 LITELLM_BASE_URL = "http://litellm.test/v1"
 LLM_DEFAULT_MODEL = "test-model"
+
+OIDC_MOBILE_CLIENT_ID = "nexus-android"
+OIDC_MOBILE_ISSUER = "https://auth.test/application/o/nexus-android/"
+CORS_ALLOWED_ORIGINS = ["https://localhost"]

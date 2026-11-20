@@ -1,6 +1,7 @@
 /** Typed client for the Nexus REST API. The types in `schema.d.ts` are generated with `npm run gen:api`. */
 import createClient, { type Middleware } from 'openapi-fetch'
 
+import { apiFetch } from '../native/transport'
 import type { components, paths } from './schema'
 
 export type CurrentUser = components['schemas']['CurrentUser']
@@ -47,8 +48,8 @@ const csrf: Middleware = {
 export const api = createClient<paths>({
   baseUrl: window.location.origin,
   credentials: 'same-origin',
-  // Looked up on every call, so that tests can replace the global fetch.
-  fetch: (request) => globalThis.fetch(request),
+  // In a browser this is plain fetch; in the Android app it adds the server and the access token.
+  fetch: (request) => apiFetch(request),
 })
 api.use(csrf)
 
@@ -85,7 +86,7 @@ export async function fetchCurrentUser(): Promise<CurrentUser | null> {
 export async function uploadFile<T>(path: string, file: File): Promise<T> {
   const body = new FormData()
   body.append('file', file)
-  const response = await globalThis.fetch(
+  const response = await apiFetch(
     new Request(new URL(path, window.location.origin), {
       method: 'POST',
       body,

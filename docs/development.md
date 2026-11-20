@@ -50,9 +50,33 @@ After changing the REST API, regenerate the TypeScript types with
 
 ## Android
 
+The Android project is in `frontend/android/`. It needs JDK 21 and the Android
+SDK (platform 37).
+
 ```bash
 cd frontend
-npm run android:sync
+npm run android:sync      # build the web interface and copy it into the Android project
 cd android
-./gradlew assembleDebug
+./gradlew assembleDebug   # the APK is written to app/build/outputs/apk/debug/
 ```
+
+Code that runs only in the app is in `frontend/src/native/`. Tests replace the
+device with fakes (`frontend/src/test-native.ts`); the login through the system
+browser (`oidc.ts`) can only be tried on a device.
+
+### Releases
+
+Pushing a tag `v*.*.*` builds a signed APK and attaches it to the GitHub
+release. The signing key is read from these repository secrets, and is never
+stored in the repository:
+
+| Secret | Content |
+|---|---|
+| `ANDROID_KEYSTORE_BASE64` | The keystore file, base64-encoded |
+| `ANDROID_KEYSTORE_PASSWORD` | Password of the keystore |
+| `ANDROID_KEY_ALIAS` | Alias of the key |
+| `ANDROID_KEY_PASSWORD` | Password of the key |
+
+Create the keystore once with `keytool -genkeypair -v -keystore release.jks
+-keyalg RSA -keysize 4096 -validity 10000 -alias nexus` and keep a copy: an
+app can only be updated by an APK signed with the same key.

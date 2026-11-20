@@ -59,7 +59,7 @@ Every feature is a Django app with the same parts:
 
 | Service | Purpose | Published port |
 |---|---|---|
-| `web` | Gunicorn: API, admin, login, web interface | `WEB_PORT` (8000) |
+| `web` | Gunicorn: API (also for the Android app), admin, login, web interface | `WEB_PORT` (8000) |
 | `mcp` | MCP server for agents | `MCP_PORT` (8001) |
 | `worker`, `beat` | Celery worker and scheduler | |
 | `migrate` | Applies database migrations, then exits | |

@@ -28,6 +28,32 @@ class HealthView(APIView):
         return Response({"status": "ok"})
 
 
+class ConfigView(APIView):
+    """What a client needs to know before it can sign in. Public, and contains no secrets."""
+
+    authentication_classes = ()
+    permission_classes = (AllowAny,)
+
+    @extend_schema(
+        responses=inline_serializer(
+            "Config",
+            {"oidc_issuer": serializers.CharField(), "oidc_client_id": serializers.CharField()},
+        ),
+    )
+    def get(self, request: Request) -> Response:
+        """Return the OpenID Connect issuer and the public client id for the mobile app.
+
+        Both are empty when the mobile app is not enabled on this server.
+        """
+        enabled = bool(settings.OIDC_MOBILE_CLIENT_ID)
+        return Response(
+            {
+                "oidc_issuer": settings.OIDC_MOBILE_ISSUER if enabled else "",
+                "oidc_client_id": settings.OIDC_MOBILE_CLIENT_ID,
+            },
+        )
+
+
 @require_safe
 def spa(request: HttpRequest) -> FileResponse:  # noqa: ARG001
     """Serve the single-page application for client-side routes such as ``/sleep``."""

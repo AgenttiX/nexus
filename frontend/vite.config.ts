@@ -21,7 +21,9 @@ export default defineConfig({
       include: ['src/**'],
       exclude: ['src/main.tsx', 'src/test-setup.ts', 'src/test-utils.tsx', 'src/api/schema.d.ts', 'src/**/*.test.*', 'src/**/*.d.ts',
         // A thin wrapper around the charting library, which needs a real browser canvas.
-        'src/components/Plot.tsx'],
+        'src/components/Plot.tsx',
+        // Glue between the OAuth library and the device; runs only on a device against Authentik.
+        'src/native/oidc.ts', 'src/test-native.ts'],
       thresholds: { lines: 100, functions: 100, branches: 100, statements: 100 },
     },
   },
