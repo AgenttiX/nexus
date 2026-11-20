@@ -19,6 +19,9 @@ export function Layout() {
         <Link to="/finance" className="text-slate-600 [&.active]:font-semibold [&.active]:text-slate-900">
           Finances
         </Link>
+        <Link to="/investments" className="text-slate-600 [&.active]:font-semibold [&.active]:text-slate-900">
+          Investments
+        </Link>
         <Link to="/food" className="text-slate-600 [&.active]:font-semibold [&.active]:text-slate-900">
           Food
         </Link>

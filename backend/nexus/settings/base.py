@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "apps.sleep",
     "apps.news",
     "apps.finance",
+    "apps.investments",
 ]
 
 MIDDLEWARE = [
@@ -106,6 +107,10 @@ CELERY_BEAT_SCHEDULE: dict[str, dict[str, object]] = {
     "calendars-sync-all": {
         "task": "apps.calendars.tasks.sync_all_calendars",
         "schedule": crontab(minute="*/30"),
+    },
+    "investments-update-prices": {
+        "task": "apps.investments.tasks.update_prices",
+        "schedule": crontab(minute="20", hour="*/4"),
     },
     "news-fetch-articles": {"task": "apps.news.tasks.fetch_articles", "schedule": crontab(minute="5,35")},
     "news-write-due-digests": {"task": "apps.news.tasks.write_due_digests", "schedule": crontab(minute="10")},
