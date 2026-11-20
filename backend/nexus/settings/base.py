@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "apps.mcp_server",
     "apps.food",
     "apps.calendars",
+    "apps.sleep",
 ]
 
 MIDDLEWARE = [

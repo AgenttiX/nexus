@@ -10,6 +10,9 @@ export function Layout() {
         <Link to="/calendar" className="text-slate-600 [&.active]:font-semibold [&.active]:text-slate-900">
           Calendar
         </Link>
+        <Link to="/sleep" className="text-slate-600 [&.active]:font-semibold [&.active]:text-slate-900">
+          Sleep
+        </Link>
         <Link to="/food" className="text-slate-600 [&.active]:font-semibold [&.active]:text-slate-900">
           Food
         </Link>
