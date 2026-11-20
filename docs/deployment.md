@@ -29,6 +29,13 @@
    Authentik administrator. Then follow {doc}`authentication` to create users
    and register passkeys.
 
+## Secrets to keep
+
+`DJANGO_SECRET_KEY` and `FIELD_ENCRYPTION_SALT` together encrypt the secrets
+stored in the database, such as calendar addresses. Back them up with the
+database: without them those values cannot be read. To change the secret key,
+put the old one in `DJANGO_SECRET_KEY_FALLBACKS`.
+
 ## Published ports
 
 `web`, `mcp` and `authentik-server` publish their ports on `BIND_ADDRESS`. Keep

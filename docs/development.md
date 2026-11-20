@@ -36,6 +36,9 @@ Install the Git hooks once with `prek install`.
 | Tests, with 100 % coverage required | `npm test` |
 | Types and build | `npm run build` |
 
+After changing the REST API, regenerate the TypeScript types with
+`npm run gen:api` (in `frontend/`).
+
 ## Rules
 
 - Type annotations and tests are required for all code. Exclusions are listed

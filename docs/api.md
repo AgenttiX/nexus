@@ -12,6 +12,9 @@
 ```{eval-rst}
 .. automodule:: apps.core.views
    :members:
+
+.. automodule:: apps.core.models
+   :members:
 ```
 
 ## Accounts

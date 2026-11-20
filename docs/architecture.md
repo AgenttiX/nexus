@@ -75,10 +75,18 @@ networks without a route to the outside.
 
 - **Periodic tasks are declared in code** (`CELERY_BEAT_SCHEDULE`).
   django-celery-beat does not support Django 6.1 yet.
+- **Sleep statistics use numpy directly**; pandas is present only because
+  `yfinance` returns its data in it.
+- **Money is stored as decimals with a currency code**, not with django-money,
+  whose py-moneyed dependency has not been released since 2022.
 - **rest-pandas is not used**: it has had no release since 2019.
 - **django-rest-framework-mcp is not used**: it is an alpha that does not
   support current Django. FastMCP is used instead.
 - **Yle's public API is not used**: it no longer offers articles. Yle news
-  comes from its RSS feed.
+  comes from its RSS feed and article pages.
+- **The Guardian's API is not used** either: its RSS feed and article pages
+  give the same content without an API key.
+- **Parallel article summaries run as concurrent requests inside one task**,
+  not as separate Celery tasks, which would need a result backend.
 - **HS, Aamulehti and Kauppalehti** contribute titles and leads only, as their
   articles are for subscribers.

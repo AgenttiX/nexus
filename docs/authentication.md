@@ -37,5 +37,5 @@ resulting token to the API.
 
 ## Agents
 
-Planned: each agent gets its own bearer token, bound to one user, with a scope
-of none, read or write per feature. See {doc}`mcp`.
+Each agent gets its own bearer token, bound to one user, with read or write
+access per feature. See {doc}`mcp`.
