@@ -20,6 +20,7 @@ backend/staticfiles/
 # Frontend and Android
 node_modules/
 frontend/dist/
+frontend/coverage/
 frontend/android/.gradle/
 frontend/android/build/
 frontend/android/app/build/
@@ -36,3 +37,4 @@ docs/_build/
 # Editors
 .idea/
 .vscode/
+frontend/openapi.yaml

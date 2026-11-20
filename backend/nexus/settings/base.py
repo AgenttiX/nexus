@@ -13,6 +13,11 @@ from nexus.env import env, env_list
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = env("DJANGO_SECRET_KEY")
+# Secrets stored in the database, such as calendar addresses, are encrypted with a key derived
+# from SECRET_KEY and this salt. Changing either makes them unreadable, unless the old secret
+# key is listed in SECRET_KEY_FALLBACKS.
+SALT_KEY = env("FIELD_ENCRYPTION_SALT")
+SECRET_KEY_FALLBACKS = env_list("DJANGO_SECRET_KEY_FALLBACKS")
 DEBUG = False
 ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS")
 CSRF_TRUSTED_ORIGINS = env_list("DJANGO_CSRF_TRUSTED_ORIGINS")
@@ -33,6 +38,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.openid_connect",
     "apps.core",
     "apps.accounts",
+    "apps.mcp_server",
 ]
 
 MIDDLEWARE = [
@@ -92,7 +98,7 @@ CELERY_BROKER_URL = f"{REDIS_URL}/0"
 # does not support Django 6.1 yet.
 CELERY_BEAT_SCHEDULE: dict[str, dict[str, object]] = {}
 CELERY_TASK_ACKS_LATE = True
-CELERY_TIMEZONE = "UTC"
+CELERY_TIMEZONE = env("TIME_ZONE", "UTC")
 
 # Authentication: every browser login goes through Authentik, which enforces the passkey policy.
 AUTH_USER_MODEL = "accounts.User"
@@ -120,6 +126,16 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
+# Optional free demo key of CoinGecko, which raises its rate limit.
+COINGECKO_API_KEY = env("COINGECKO_API_KEY", "")
+
+# Language models, reached through the OpenAI-compatible API of a LiteLLM proxy.
+LITELLM_BASE_URL = env("LITELLM_BASE_URL", "")
+LITELLM_API_KEY = env("LITELLM_API_KEY", "")
+LLM_DEFAULT_MODEL = env("LLM_DEFAULT_MODEL", "")
+# How many articles are summarised at the same time in the parallel digest mode.
+NEWS_PARALLEL_SESSIONS = int(env("NEWS_PARALLEL_SESSIONS", "4"))
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ["rest_framework.authentication.SessionAuthentication"],
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
@@ -136,7 +152,8 @@ SPECTACULAR_SETTINGS = {
 }
 
 LANGUAGE_CODE = "en"
-TIME_ZONE = "UTC"
+# The time zone decides what "today" means, for example for menus and sleep statistics.
+TIME_ZONE = env("TIME_ZONE", "UTC")
 USE_I18N = False
 USE_TZ = True
 

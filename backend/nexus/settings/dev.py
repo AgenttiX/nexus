@@ -3,6 +3,7 @@
 import os
 
 os.environ.setdefault("DJANGO_SECRET_KEY", "insecure-development-key")
+os.environ.setdefault("FIELD_ENCRYPTION_SALT", "insecure-development-salt")
 os.environ.setdefault("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1")
 os.environ.setdefault("POSTGRES_PASSWORD", "nexus")
 os.environ.setdefault("POSTGRES_HOST", "localhost")

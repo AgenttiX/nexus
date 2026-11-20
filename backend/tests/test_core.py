@@ -67,3 +67,9 @@ def test_unknown_api_paths_are_not_answered_by_the_spa(client: Client) -> None:
 
 def test_spa_rejects_writes(client: Client) -> None:
     assert client.post("/sleep").status_code == 405
+
+
+def test_every_scheduled_task_exists() -> None:
+    celery_app.loader.import_default_modules()
+    for entry in celery_app.conf.beat_schedule.values():
+        assert entry["task"] in celery_app.tasks

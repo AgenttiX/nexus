@@ -14,8 +14,16 @@ x-backend: &backend
     - no-new-privileges:true
   environment: &backend-env
     DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?}
+    DJANGO_SECRET_KEY_FALLBACKS: ${DJANGO_SECRET_KEY_FALLBACKS:-}
+    FIELD_ENCRYPTION_SALT: ${FIELD_ENCRYPTION_SALT:?}
     DJANGO_ALLOWED_HOSTS: ${NEXUS_HOST:?}
     DJANGO_CSRF_TRUSTED_ORIGINS: https://${NEXUS_HOST}
+    TIME_ZONE: ${TIME_ZONE:-UTC}
+    LITELLM_BASE_URL: ${LITELLM_BASE_URL:-}
+    LITELLM_API_KEY: ${LITELLM_API_KEY:-}
+    LLM_DEFAULT_MODEL: ${LLM_DEFAULT_MODEL:-}
+    NEWS_PARALLEL_SESSIONS: ${NEWS_PARALLEL_SESSIONS:-4}
+    COINGECKO_API_KEY: ${COINGECKO_API_KEY:-}
     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
     REDIS_URL: redis://:${REDIS_PASSWORD:?}@redis:6379
     OIDC_CLIENT_ID: ${OIDC_CLIENT_ID:?}
@@ -66,6 +74,16 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
+
+  # MCP server for AI agents. Reached through Nginx at https://<NEXUS_HOST>/mcp
+  mcp:
+    <<: *backend
+    command: ["uvicorn", "nexus.mcp_asgi:application", "--host", "0.0.0.0", "--port", "8001", "--no-server-header"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${MCP_PORT:-8001}:8001"
 
   worker:
     <<: *backend

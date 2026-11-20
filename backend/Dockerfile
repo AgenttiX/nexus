@@ -34,7 +34,7 @@ COPY backend/nexus ./nexus
 COPY backend/manage.py ./
 COPY --from=frontend /frontend/dist ./frontend
 # collectstatic needs importable settings; these placeholder values are not kept in the image.
-RUN DJANGO_SECRET_KEY=build DJANGO_ALLOWED_HOSTS=build POSTGRES_PASSWORD=build \
+RUN DJANGO_SECRET_KEY=build FIELD_ENCRYPTION_SALT=build DJANGO_ALLOWED_HOSTS=build POSTGRES_PASSWORD=build \
     OIDC_CLIENT_ID=build OIDC_CLIENT_SECRET=build OIDC_SERVER_URL=https://build.invalid/ \
     python manage.py collectstatic --noinput
 USER nexus

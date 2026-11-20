@@ -11,3 +11,9 @@ STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
 }
+
+# Fixed, so that tests of local times do not depend on the environment.
+TIME_ZONE = "Europe/Helsinki"
+
+LITELLM_BASE_URL = "http://litellm.test/v1"
+LLM_DEFAULT_MODEL = "test-model"
