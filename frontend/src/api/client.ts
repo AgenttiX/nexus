@@ -76,3 +76,24 @@ export async function fetchCurrentUser(): Promise<CurrentUser | null> {
   }
   return unwrap(result)
 }
+
+/**
+ * Uploads a file as a multipart form to `path` and returns the decoded answer.
+ * The typed client is made for JSON, so files are sent with a plain request.
+ */
+export async function uploadFile<T>(path: string, file: File): Promise<T> {
+  const body = new FormData()
+  body.append('file', file)
+  const response = await globalThis.fetch(
+    new Request(new URL(path, window.location.origin), {
+      method: 'POST',
+      body,
+      credentials: 'same-origin',
+      headers: { 'X-CSRFToken': csrfToken(document.cookie) ?? '' },
+    }),
+  )
+  if (!response.ok) {
+    throw new ApiError(response.status)
+  }
+  return (await response.json()) as T
+}

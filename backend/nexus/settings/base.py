@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "apps.calendars",
     "apps.sleep",
     "apps.news",
+    "apps.finance",
 ]
 
 MIDDLEWARE = [

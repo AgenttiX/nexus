@@ -2,6 +2,7 @@ import { createRootRoute, createRoute, createRouter } from '@tanstack/react-rout
 
 import { HomePage, Layout } from './components/Layout'
 import { CalendarPage } from './features/calendars/CalendarPage'
+import { FinancePage } from './features/finance/FinancePage'
 import { FoodPage } from './features/food/FoodPage'
 import { NewsPage } from './features/news/NewsPage'
 import { SleepPage } from './features/sleep/SleepPage'
@@ -12,6 +13,7 @@ const routeTree = rootRoute.addChildren([
   createRoute({ getParentRoute: () => rootRoute, path: '/news', component: NewsPage }),
   createRoute({ getParentRoute: () => rootRoute, path: '/calendar', component: CalendarPage }),
   createRoute({ getParentRoute: () => rootRoute, path: '/sleep', component: SleepPage }),
+  createRoute({ getParentRoute: () => rootRoute, path: '/finance', component: FinancePage }),
   createRoute({ getParentRoute: () => rootRoute, path: '/food', component: FoodPage }),
 ])
 
