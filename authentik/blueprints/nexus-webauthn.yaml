@@ -1,0 +1,96 @@
+# yaml-language-server: $schema=https://goauthentik.io/blueprints/schema.json
+#
+# Passkey-only login for Nexus.
+#
+# - Login needs a discoverable (resident) WebAuthn credential with user verification.
+#   There is no password stage in this flow.
+# - Only the authenticator models listed under `context.allowed_aaguids` may be
+#   registered or used.
+version: 1
+metadata:
+  name: Nexus - WebAuthn policy
+context:
+  # AAGUIDs identify authenticator models. These are the entries that Authentik 2026.8
+  # ships (from the FIDO Metadata Service and the passkey AAGUID list) under the names
+  # in the comments. YubiKey 5 FIPS, CCN, Enhanced PIN and Enterprise/Consumer Profile
+  # variants have their own AAGUIDs and are not allowed; add them here if you own one.
+  allowed_aaguids:
+    # YubiKey 5 Series with NFC (one per firmware line)
+    - 2fc0579f-8113-47ea-b116-bb5a8db9202a
+    - fa2b99dc-9e39-4257-8f92-4a30d23c4118
+    - d7781e5d-e353-46aa-afe2-3ca49f13332a
+    - a25342c0-3cdc-4414-8e46-f4807fca511c
+    # Windows Hello (hardware, VBS hardware, software)
+    - 08987058-cadc-4b81-b6e1-30de50dcbe96
+    - 9ddd1817-af5a-4672-a2b9-3e3dd95000a9
+    - 6028b017-b1d4-4c02-b4b3-afcdafc96bb2
+    # Google Password Manager
+    - ea9b8d66-4d01-1d21-3ce4-b6b48cb575d4
+    # iCloud Keychain (listed as "Apple Passwords") and iCloud Keychain (Managed)
+    - fbfc3007-154e-4ecc-8c0b-6e020557d7bd
+    - dd4ec289-e01d-41c9-bb89-70fa845d4bf2
+entries:
+  - model: authentik_blueprints.metaapplyblueprint
+    attrs:
+      identifiers:
+        name: Default - WebAuthn MFA setup flow
+      required: true
+
+  # Registration of a new passkey (user settings and enrolment).
+  - model: authentik_stages_authenticator_webauthn.authenticatorwebauthnstage
+    id: webauthn-setup
+    identifiers:
+      name: default-authenticator-webauthn-setup
+    attrs:
+      user_verification: required
+      resident_key_requirement: required
+      device_type_restrictions: !Enumerate [
+        !Context allowed_aaguids,
+        SEQ,
+        !Find [authentik_stages_authenticator_webauthn.webauthndevicetype, [aaguid, !Value 0]],
+      ]
+
+  # Login: WebAuthn only, user verification required, same device allowlist.
+  - model: authentik_stages_authenticator_validate.authenticatorvalidatestage
+    id: webauthn-validate
+    identifiers:
+      name: nexus-authentication-webauthn
+    attrs:
+      device_classes:
+        - webauthn
+      not_configured_action: deny
+      webauthn_user_verification: required
+      webauthn_allowed_device_types: !Enumerate [
+        !Context allowed_aaguids,
+        SEQ,
+        !Find [authentik_stages_authenticator_webauthn.webauthndevicetype, [aaguid, !Value 0]],
+      ]
+
+  - model: authentik_stages_user_login.userloginstage
+    id: login
+    identifiers:
+      name: nexus-authentication-login
+    attrs:
+      session_duration: hours=12
+
+  - model: authentik_flows.flow
+    id: flow
+    identifiers:
+      slug: nexus-authentication-passkey
+    attrs:
+      name: Nexus passkey login
+      title: Sign in to Nexus
+      designation: authentication
+      authentication: none
+
+  - model: authentik_flows.flowstagebinding
+    identifiers:
+      target: !KeyOf flow
+      stage: !KeyOf webauthn-validate
+      order: 10
+
+  - model: authentik_flows.flowstagebinding
+    identifiers:
+      target: !KeyOf flow
+      stage: !KeyOf login
+      order: 20

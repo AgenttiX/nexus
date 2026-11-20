@@ -1,0 +1,76 @@
+[project]
+name = "nexus"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "celery>=5.7.0",
+    "django>=6.1,<6.2",
+    "django-allauth[socialaccount]>=65.22.1",
+    "django-filter>=26.2",
+    "django-redis>=7.0.0",
+    "djangorestframework>=3.18.3",
+    "drf-spectacular>=0.30.0",
+    "fastmcp>=4.2.3",
+    "gunicorn>=27.0.1",
+    "openai>=3.57.0",
+    "pandas>=3.1.1",
+    "psycopg[binary]>=3.3.9",
+    "redis>=8.1.0",
+    "whitenoise>=6.12.0",
+]
+
+[dependency-groups]
+dev = [
+    "django-stubs>=6.1.2",
+    "djangorestframework-stubs>=3.18.2",
+    "furo>=2025.12.19",
+    "myst-parser>=5.2.0",
+    "pyrefly>=1.5.0",
+    "pytest>=9.2.0",
+    "pytest-cov>=7.1.0",
+    "pytest-django>=4.14.0",
+    "ruff>=0.17.6",
+    "sphinx>=9.2.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 110
+target-version = "py314"
+extend-exclude = ["**/migrations/*.py"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812",  # conflicts with the formatter
+    "D203",    # incompatible with D211
+    "D213",    # incompatible with D212
+    "ARG002",  # DRF and Django method signatures have unused arguments
+    "CPY",     # the licence is in LICENSE
+    "D104",    # package docstrings add nothing
+    "D106",    # Meta classes need no docstring
+    "TC",      # no type-checking-only import blocks
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D103", "D401", "S101", "PLR2004", "ARG001"]
+
+[tool.pyrefly]
+project-includes = ["."]
+project-excludes = ["**/migrations/**", ".venv/**"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "nexus.settings.test"
+testpaths = ["tests"]
+addopts = "--cov --cov-report=term-missing:skip-covered"
+filterwarnings = ["error", "ignore:No directory at:UserWarning"]
+
+[tool.coverage.run]
+branch = true
+source = ["apps", "nexus"]
+omit = ["**/migrations/*", "nexus/settings/prod.py", "nexus/wsgi.py"]
+
+[tool.coverage.report]
+fail_under = 100

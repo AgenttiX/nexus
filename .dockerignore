@@ -1,0 +1,14 @@
+**/.git
+**/.venv
+**/node_modules
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+**/.coverage
+.env
+.env.*
+data/
+docs/
+frontend/dist/
+frontend/android/
+backend/staticfiles/

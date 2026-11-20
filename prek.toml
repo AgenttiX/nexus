@@ -1,0 +1,30 @@
+# Git hooks, run by prek (https://prek.j178.dev/). Install with `prek install`.
+
+[[repos]]
+repo = "builtin"
+hooks = [
+    { id = "trailing-whitespace" },
+    { id = "end-of-file-fixer" },
+    { id = "check-yaml", args = ["--unsafe"] },  # Authentik blueprints use custom YAML tags
+    { id = "check-toml" },
+    { id = "check-json", exclude = "^frontend/tsconfig.*\\.json$" },  # tsconfig files have comments
+    { id = "check-merge-conflict" },
+    { id = "check-added-large-files" },
+    { id = "detect-private-key" },
+]
+
+# This repository is public: block secrets before they are committed.
+[[repos]]
+repo = "https://github.com/gitleaks/gitleaks"
+rev = "v8.30.0"
+hooks = [{ id = "gitleaks" }]
+
+[[repos]]
+repo = "local"
+hooks = [
+    { id = "ruff-check", name = "ruff check", language = "system", entry = "uv run --directory backend ruff check --fix . ../docs", types = ["python"], pass_filenames = false },
+    { id = "ruff-format", name = "ruff format", language = "system", entry = "uv run --directory backend ruff format . ../docs", types = ["python"], pass_filenames = false },
+    { id = "pyrefly", name = "pyrefly", language = "system", entry = "uv run --directory backend pyrefly check", types = ["python"], pass_filenames = false },
+    { id = "uv-lock", name = "uv lock is current", language = "system", entry = "uv lock --project backend --check", files = "^backend/(pyproject\\.toml|uv\\.lock)$", pass_filenames = false },
+    { id = "oxlint", name = "oxlint", language = "system", entry = "npm --prefix frontend run lint", files = "^frontend/src/", pass_filenames = false },
+]

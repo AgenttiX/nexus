@@ -1,0 +1,38 @@
+# Secrets and local configuration. This repository is public.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.jks
+*.keystore
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.coverage
+htmlcov/
+.pytest_cache/
+.ruff_cache/
+backend/staticfiles/
+
+# Frontend and Android
+node_modules/
+frontend/dist/
+frontend/android/.gradle/
+frontend/android/build/
+frontend/android/app/build/
+frontend/android/local.properties
+frontend/android/app/src/main/assets/public/
+frontend/android/capacitor-cordova-android-plugins/
+
+# Documentation
+docs/_build/
+
+# Runtime data
+/data/
+
+# Editors
+.idea/
+.vscode/
