@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Test feed</title>
+    <item>
+      <title>Parliament passes the budget</title>
+      <link>https://yle.fi/a/74-1</link>
+      <description>The vote was &lt;b&gt;close&lt;/b&gt; &amp;amp; late.</description>
+      <pubDate>Fri, 20 Nov 2026 16:28:01 +0200</pubDate>
+    </item>
+    <item>
+      <title>Singer announces a tour</title>
+      <link>https://yle.fi/a/74-2</link>
+      <description>Dates were published.</description>
+      <pubDate>Fri, 20 Nov 2026 12:00:00 +0200</pubDate>
+    </item>
+    <item>
+      <title>No date</title>
+      <link>https://yle.fi/a/74-3</link>
+    </item>
+    <item>
+      <title>Elsewhere</title>
+      <link>https://tracker.example.com/a/74-4</link>
+      <pubDate>Fri, 20 Nov 2026 12:00:00 +0200</pubDate>
+    </item>
+    <item>
+      <title> </title>
+      <link>https://yle.fi/a/74-5</link>
+      <pubDate>Fri, 20 Nov 2026 12:00:00 +0200</pubDate>
+    </item>
+  </channel>
+</rss>

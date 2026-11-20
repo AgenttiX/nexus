@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "apps.food",
     "apps.calendars",
     "apps.sleep",
+    "apps.news",
 ]
 
 MIDDLEWARE = [
@@ -105,6 +106,8 @@ CELERY_BEAT_SCHEDULE: dict[str, dict[str, object]] = {
         "task": "apps.calendars.tasks.sync_all_calendars",
         "schedule": crontab(minute="*/30"),
     },
+    "news-fetch-articles": {"task": "apps.news.tasks.fetch_articles", "schedule": crontab(minute="5,35")},
+    "news-write-due-digests": {"task": "apps.news.tasks.write_due_digests", "schedule": crontab(minute="10")},
     "food-fetch-menus": {"task": "apps.food.tasks.fetch_menus", "schedule": crontab(minute="15", hour="*/3")},
 }
 CELERY_TASK_ACKS_LATE = True
