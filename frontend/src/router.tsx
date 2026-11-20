@@ -1,11 +1,13 @@
 import { createRootRoute, createRoute, createRouter } from '@tanstack/react-router'
 
 import { HomePage, Layout } from './components/Layout'
+import { CalendarPage } from './features/calendars/CalendarPage'
 import { FoodPage } from './features/food/FoodPage'
 
 const rootRoute = createRootRoute({ component: Layout })
 const routeTree = rootRoute.addChildren([
   createRoute({ getParentRoute: () => rootRoute, path: '/', component: HomePage }),
+  createRoute({ getParentRoute: () => rootRoute, path: '/calendar', component: CalendarPage }),
   createRoute({ getParentRoute: () => rootRoute, path: '/food', component: FoodPage }),
 ])
 

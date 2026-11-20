@@ -7,6 +7,9 @@ export function Layout() {
         <Link to="/" className="text-2xl font-semibold">
           Nexus
         </Link>
+        <Link to="/calendar" className="text-slate-600 [&.active]:font-semibold [&.active]:text-slate-900">
+          Calendar
+        </Link>
         <Link to="/food" className="text-slate-600 [&.active]:font-semibold [&.active]:text-slate-900">
           Food
         </Link>
