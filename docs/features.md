@@ -128,8 +128,45 @@ keeps events from the past 20 years to one year ahead.
 
 ### ActivityWatch
 
-Planned: `timetracking` reads the SQLite files that ActivityWatch's `aw-sync`
-writes to a synced directory.
+Nexus reads the data that [ActivityWatch](https://activitywatch.net/) records
+on the user's computers and phones, and shows how much time was spent, in
+which apps and on which devices.
+
+**Getting the data to the server.** Each device writes its data to a
+directory that is synchronised to the server, for example with ActivityWatch's
+`aw-sync` and Syncthing. On the server, `AW_SYNC_DIR` in `.env` names the
+directory that holds one subdirectory per user, named after the username:
+
+```text
+<AW_SYNC_DIR>/
+  alice/
+    laptop/3f2a…/sync.db
+    phone/9c1e…/sync.db
+  bob/
+    …
+```
+
+Every SQLite database below a user's directory is read, whatever the layout
+underneath, so both layouts of `aw-sync` work. The directory is mounted
+read-only, the databases are opened read-only, and a file that is being
+written or cannot be read is skipped until the next run. Import runs every 15
+minutes and only reads what is new.
+
+**Active time.** On each device, the periods when a window had the focus are
+cut to the periods when the user was at the device, according to its
+away-from-keyboard watcher. A device without one, such as a phone, counts in
+full.
+
+- **Web interface**: the Time page shows active time for the last 7, 30 or 90
+  days: the total, the daily average, a chart per day, and the time per app
+  and per device.
+- **REST API**: `/api/timetracking/summary/?start=…&end=…` (at most 92 days)
+  and `/api/timetracking/buckets/`.
+- **MCP**: the `time_summary` tool (scope `timetracking`).
+- **Skill**: `skills/nexus-time/`.
+
+Not included yet: grouping apps into categories, and time per website or
+window title. The imported events hold that data.
 
 ## Sleep
 

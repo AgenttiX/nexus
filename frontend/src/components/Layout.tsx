@@ -13,6 +13,9 @@ export function Layout() {
         <Link to="/calendar" className="text-slate-600 [&.active]:font-semibold [&.active]:text-slate-900">
           Calendar
         </Link>
+        <Link to="/time" className="text-slate-600 [&.active]:font-semibold [&.active]:text-slate-900">
+          Time
+        </Link>
         <Link to="/sleep" className="text-slate-600 [&.active]:font-semibold [&.active]:text-slate-900">
           Sleep
         </Link>

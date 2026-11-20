@@ -26,6 +26,7 @@ OpenCode and Claude Code, and local models with context windows of
 | `asset_prices` | `investments:read` | Recent daily closing prices of one asset |
 | `food_menu` | `food:read` | UniCafe menus for a date, for favourites or a named restaurant |
 | `calendar_events` | `calendars:read` | Events between two dates |
+| `time_summary` | `timetracking:read` | Active device time by app, device and day for a period |
 | `sleep_summary` | `sleep:read` | Bedtime, wake-up, duration and weekend jet lag statistics for a period |
 | `sleep_nights` | `sleep:read` | Individual sleep records for a period |
 

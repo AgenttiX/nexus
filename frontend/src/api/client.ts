@@ -20,6 +20,7 @@ export type FinanceSummary = components['schemas']['FinanceSummary']
 export type ImportBatch = components['schemas']['ImportBatch']
 export type Holding = components['schemas']['Holding']
 export type Portfolio = components['schemas']['Portfolio']
+export type TimeSummary = components['schemas']['TimeSummary']
 
 export const LOGIN_URL = '/accounts/oidc/authentik/login/'
 

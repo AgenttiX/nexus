@@ -18,6 +18,7 @@ urlpatterns = [
     path("api/", include("apps.news.urls")),
     path("api/", include("apps.finance.urls")),
     path("api/", include("apps.investments.urls")),
+    path("api/", include("apps.timetracking.urls")),
     # Everything else belongs to the single-page application.
     re_path(r"^(?!api/|admin/|accounts/|static/|assets/).*$", spa, name="spa"),
 ]

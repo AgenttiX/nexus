@@ -51,5 +51,7 @@ The backend containers carry the `wud.watch` label, so What's Up Docker
 
 ## ActivityWatch data
 
-Point `AW_SYNC_DIR` at the directory that your devices sync to the server (for
-example with Syncthing). It is mounted read-only into the `worker` container.
+Point `AW_SYNC_DIR` at a directory with one subdirectory per user, named after
+the username, into which that user's devices synchronise their ActivityWatch
+databases. It is mounted read-only into the `worker` container. See
+{doc}`features` for the layout.

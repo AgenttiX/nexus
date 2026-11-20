@@ -571,6 +571,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/timetracking/buckets/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The signed-in user's ActivityWatch buckets, which shows what has been imported and until when. */
+        get: operations["timetracking_buckets_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/timetracking/summary/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Return active hours by day, app and device. */
+        get: operations["timetracking_summary_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -630,6 +664,21 @@ export interface components {
          * @enum {string}
          */
         BankEnum: "generic";
+        /** @description A stream of events from one watcher on one device. */
+        Bucket: {
+            readonly id: number;
+            /** @description The bucket's id in ActivityWatch. */
+            name: string;
+            /** @description For example currentwindow or afkstatus. */
+            type: string;
+            client?: string;
+            hostname?: string;
+            /**
+             * Format: date-time
+             * @description End of the latest imported event; the next import continues from here.
+             */
+            readonly imported_until: string | null;
+        };
         /** @description A calendar. Its secret address can be written but is never returned. */
         Calendar: {
             readonly id: number;
@@ -685,6 +734,13 @@ export interface components {
              * Format: email
              */
             readonly email: string;
+        };
+        /** @description Active hours of one day. */
+        DayHours: {
+            /** Format: date */
+            date: string;
+            /** Format: double */
+            hours: number;
         };
         /** @description A news digest with the articles it was written from. */
         Digest: {
@@ -795,6 +851,12 @@ export interface components {
             income: string;
             /** Format: decimal */
             expenses: string;
+        };
+        /** @description Active hours of one app or device. */
+        NamedHours: {
+            name: string;
+            /** Format: double */
+            hours: number;
         };
         /** @description A user's news settings. */
         NewsProfile: {
@@ -1020,6 +1082,18 @@ export interface components {
          * @enum {string}
          */
         StatusEnum: "pending" | "done" | "failed";
+        /** @description Active time in a period, in hours, by day, app and device. Apps and devices are sorted by time. */
+        TimeSummary: {
+            /** Format: date */
+            first: string;
+            /** Format: date */
+            last: string;
+            /** Format: double */
+            total: number;
+            by_day: components["schemas"]["DayHours"][];
+            by_app: components["schemas"]["NamedHours"][];
+            by_device: components["schemas"]["NamedHours"][];
+        };
         /** @description A bank transaction. Only its category can be changed. */
         Transaction: {
             readonly id: number;
@@ -2211,6 +2285,47 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["SleepSummary"];
+                };
+            };
+        };
+    };
+    timetracking_buckets_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Bucket"][];
+                };
+            };
+        };
+    };
+    timetracking_summary_retrieve: {
+        parameters: {
+            query: {
+                end: string;
+                start: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TimeSummary"];
                 };
             };
         };

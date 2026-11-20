@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "apps.news",
     "apps.finance",
     "apps.investments",
+    "apps.timetracking",
 ]
 
 MIDDLEWARE = [
@@ -104,6 +105,10 @@ CELERY_BROKER_URL = f"{REDIS_URL}/0"
 # Periodic tasks are declared here in code. django-celery-beat (schedules in the database)
 # does not support Django 6.1 yet.
 CELERY_BEAT_SCHEDULE: dict[str, dict[str, object]] = {
+    "timetracking-import": {
+        "task": "apps.timetracking.tasks.import_activitywatch",
+        "schedule": crontab(minute="*/15"),
+    },
     "calendars-sync-all": {
         "task": "apps.calendars.tasks.sync_all_calendars",
         "schedule": crontab(minute="*/30"),
@@ -144,6 +149,10 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
     },
 }
+
+# Directory with one subdirectory per user, named after the username, holding the SQLite
+# databases that ActivityWatch's aw-sync writes. Mounted read-only into the worker.
+AW_SYNC_DIR = env("AW_SYNC_DIR", "/data/activitywatch")
 
 # Optional free demo key of CoinGecko, which raises its rate limit.
 COINGECKO_API_KEY = env("COINGECKO_API_KEY", "")
