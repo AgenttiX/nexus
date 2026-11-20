@@ -6,6 +6,7 @@ repository is public and must not contain private configuration.
 
 from pathlib import Path
 
+from celery.schedules import crontab
 from django.utils.csp import CSP
 
 from nexus.env import env, env_list
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     "apps.core",
     "apps.accounts",
     "apps.mcp_server",
+    "apps.food",
 ]
 
 MIDDLEWARE = [
@@ -96,7 +98,9 @@ CACHES = {
 CELERY_BROKER_URL = f"{REDIS_URL}/0"
 # Periodic tasks are declared here in code. django-celery-beat (schedules in the database)
 # does not support Django 6.1 yet.
-CELERY_BEAT_SCHEDULE: dict[str, dict[str, object]] = {}
+CELERY_BEAT_SCHEDULE: dict[str, dict[str, object]] = {
+    "food-fetch-menus": {"task": "apps.food.tasks.fetch_menus", "schedule": crontab(minute="15", hour="*/3")},
+}
 CELERY_TASK_ACKS_LATE = True
 CELERY_TIMEZONE = env("TIME_ZONE", "UTC")
 

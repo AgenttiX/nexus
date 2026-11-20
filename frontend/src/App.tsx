@@ -1,10 +1,20 @@
 import { useQuery } from '@tanstack/react-query'
+import { RouterProvider } from '@tanstack/react-router'
+import { useState } from 'react'
 
 import { LOGIN_URL, fetchCurrentUser } from './api/client'
+import { createAppRouter } from './router'
 
-export function App() {
+type Router = ReturnType<typeof createAppRouter>
+
+/** Shows the application to signed-in users, and the way to sign in to everyone else. */
+export function App({ router: givenRouter }: { router?: Router }) {
+  const [router] = useState(() => givenRouter ?? createAppRouter())
   const { data: user, isPending, isError } = useQuery({ queryKey: ['me'], queryFn: fetchCurrentUser })
 
+  if (user) {
+    return <RouterProvider router={router} />
+  }
   return (
     <main className="mx-auto max-w-3xl p-6 font-sans">
       <h1 className="text-2xl font-semibold">Nexus</h1>
@@ -15,7 +25,6 @@ export function App() {
           Sign in with a passkey
         </a>
       )}
-      {user && <p className="mt-4">Signed in as {user.username}.</p>}
     </main>
   )
 }

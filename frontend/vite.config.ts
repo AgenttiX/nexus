@@ -19,7 +19,9 @@ export default defineConfig({
     setupFiles: ['src/test-setup.ts'],
     coverage: {
       include: ['src/**'],
-      exclude: ['src/main.tsx', 'src/test-setup.ts'],
+      exclude: ['src/main.tsx', 'src/test-setup.ts', 'src/test-utils.tsx', 'src/api/schema.d.ts', 'src/**/*.test.*', 'src/**/*.d.ts',
+        // A thin wrapper around the charting library, which needs a real browser canvas.
+        'src/components/Plot.tsx'],
       thresholds: { lines: 100, functions: 100, branches: 100, statements: 100 },
     },
   },

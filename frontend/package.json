@@ -9,23 +9,31 @@
     "lint": "oxlint",
     "test": "vitest run --coverage",
     "preview": "vite preview",
-    "android:sync": "vite build && cap sync android"
+    "android:sync": "vite build && cap sync android",
+    "gen:api": "cd ../backend && uv run python manage.py spectacular --validate --fail-on-warn --file ../frontend/openapi.yaml && cd ../frontend && npx --yes openapi-typescript@7.13.0 openapi.yaml -o src/api/schema.d.ts"
   },
   "dependencies": {
     "@capacitor/android": "^8.6.2",
     "@capacitor/core": "^8.6.2",
     "@tanstack/react-query": "^5.108.2",
+    "@tanstack/react-router": "^1.170.46",
+    "openapi-fetch": "^0.17.0",
+    "plotly.js-basic-dist-min": "^4.3.0",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "react-plotly.js": "^4.1.0"
   },
   "devDependencies": {
     "@capacitor/cli": "^8.6.2",
     "@tailwindcss/vite": "^4.3.5",
     "@testing-library/jest-dom": "^8.0.0",
     "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.13",
     "@types/node": "^24.19.2",
+    "@types/plotly.js": "^3.0.15",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@types/react-plotly.js": "^2.6.4",
     "@vitejs/plugin-react": "^6.1.2",
     "@vitest/coverage-v8": "^5.1.1",
     "jsdom": "^31.0.1",

@@ -1,0 +1,21 @@
+import { Link, Outlet } from '@tanstack/react-router'
+
+export function Layout() {
+  return (
+    <div className="mx-auto max-w-5xl p-6 font-sans">
+      <nav className="mb-6 flex items-baseline gap-6 border-b border-slate-200 pb-3">
+        <Link to="/" className="text-2xl font-semibold">
+          Nexus
+        </Link>
+        <Link to="/food" className="text-slate-600 [&.active]:font-semibold [&.active]:text-slate-900">
+          Food
+        </Link>
+      </nav>
+      <Outlet />
+    </div>
+  )
+}
+
+export function HomePage() {
+  return <p>Choose a section above.</p>
+}

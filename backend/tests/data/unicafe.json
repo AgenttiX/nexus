@@ -1,0 +1,974 @@
+[
+ {
+  "id": 5589,
+  "title": "Olivia staff restaurant",
+  "slug": "olivia-henkilostoravintola",
+  "permalink": "https://unicafe.fi/en/restaurants/olivia-henkilostoravintola/",
+  "location": [
+   {
+    "id": 270,
+    "name": "City Centre"
+   }
+  ],
+  "address": "Siltavuorenpenger 5 A, 1 krs.",
+  "visitingHours": "",
+  "blocksHtml": "",
+  "menuData": {
+   "email": "",
+   "phone": "",
+   "address": "Siltavuorenpenger 5 A, 1 krs.",
+   "feedback_address": "",
+   "description": "",
+   "visitingHours": {
+    "business": {
+     "name": null,
+     "items": [
+      {
+       "label": "Mon–Fri",
+       "hours": "11:00-13:30",
+       "closedException": false
+      }
+     ]
+    },
+    "breakfast": false,
+    "bistro": false,
+    "lounas": false
+   },
+   "menus": [
+    {
+     "date": "Mon 16.11.",
+     "message": null,
+     "data": [
+      {
+       "name": "Pulled oat stroganoff & pickled lingonberry",
+       "ingredients": "Pulled OATS (water, OAT 20 % (gluten fre",
+       "nutrition": "Energy 653kJ, energy 156kcal, fat 6.5g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "mustard",
+         "oat",
+         "soybens",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      },
+      {
+       "name": "Baked halloum pasta",
+       "ingredients": "Water, cherry tomato (cherry tomatoes, t",
+       "nutrition": "Energy 509kJ, energy 121kcal, fat 6.4g, ",
+       "meta": {
+        "0": [
+         "VL"
+        ],
+        "1": [
+         "cereals containing gluten",
+         "milk",
+         "sulfur dioxide and sulfits",
+         "wheat"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      },
+      {
+       "name": "Meatballs with BBQ sauce",
+       "ingredients": "Meatballs (Pork 57%, potato, onion, EGG,",
+       "nutrition": "Energy 486kJ, energy 116kcal, fat 7.4g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "L",
+         "M"
+        ],
+        "1": [
+         "eggs",
+         "soybens"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      }
+     ]
+    },
+    {
+     "date": "Tue 17.11.",
+     "message": null,
+     "data": [
+      {
+       "name": "Plant-based tikka masala",
+       "ingredients": "Crushed tomatoes (tomato (Italy), tomato",
+       "nutrition": "Energy 541kJ, energy 130kcal, fat 7.0g, ",
+       "meta": {
+        "0": [
+         "KELA",
+         "Veg"
+        ],
+        "1": [
+         "cereals containing gluten",
+         "mustard",
+         "oat",
+         "sulfur dioxide and sulfits",
+         "wheat"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      },
+      {
+       "name": "Rainbow trout steaks and dill sauce",
+       "ingredients": "RAINBOW TROUT patty (RAINBOW SALMON 46% ",
+       "nutrition": "Energy 668kJ, energy 160kcal, fat 11g, o",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "L"
+        ],
+        "1": [
+         "eggs",
+         "fish",
+         "milk"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      },
+      {
+       "name": "Huli huli chicken with Gochujang mayonnaise",
+       "ingredients": "Chicken roast cutlett (chicken thigh (85",
+       "nutrition": "Energy 640kJ, energy 150kcal, fat 7.8g, ",
+       "meta": {
+        "0": [
+         "G",
+         "L"
+        ],
+        "1": [
+         "eggs",
+         "milk",
+         "mustard",
+         "soybens"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      }
+     ]
+    },
+    {
+     "date": "Wed 18.11.",
+     "message": null,
+     "data": [
+      {
+       "name": "Veggie jalapeno nugget and fresh tomato-jalapeno salsa",
+       "ingredients": "Vegetable nugget (Rehydrated SOY protein",
+       "nutrition": "Energy 750kJ, energy 179kcal, fat 11g, o",
+       "meta": {
+        "0": [
+         "G",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "soybens"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      },
+      {
+       "name": "Baked potato with smoked salmon and horseradish filling",
+       "ingredients": "Baked potato (potato), SOURCREAM (pasteu",
+       "nutrition": "Energy 436kJ, energy 104kcal, fat 4.1g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "L"
+        ],
+        "1": [
+         "eggs",
+         "fish",
+         "milk",
+         "mustard",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      },
+      {
+       "name": "Chicken fillet with goat cheese sauce",
+       "ingredients": "Chicken fillet (chicken fillet (91 %), w",
+       "nutrition": "Energy 522kJ, energy 124kcal, fat 6.6g, ",
+       "meta": {
+        "0": [
+         "G",
+         "VL"
+        ],
+        "1": [
+         "milk",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      }
+     ]
+    },
+    {
+     "date": "Thu 19.11.",
+     "message": null,
+     "data": [
+      {
+       "name": "Cabbage rolls & lingonberry",
+       "ingredients": "Cabbageroll with vegetarian filling (Whi",
+       "nutrition": "Energy 478kJ, energy 113kcal, fat 2.7g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      },
+      {
+       "name": "Breaded Alaska pollock pieces with miso-lime sour cream sauce",
+       "ingredients": "Breaded ALASKAN SAITHE (ALASKAN POLLOCK ",
+       "nutrition": "Energy 763kJ, energy 183kcal, fat 9.4g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "L"
+        ],
+        "1": [
+         "fish",
+         "milk",
+         "soybens",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      },
+      {
+       "name": "Pork cheeks in mustard sauce",
+       "ingredients": "Pork cheek (Pork meat (origin Finland), ",
+       "nutrition": "Energy 545kJ, energy 130kcal, fat 8.6g, ",
+       "meta": {
+        "0": [
+         "G",
+         "L"
+        ],
+        "1": [
+         "milk",
+         "mustard",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      }
+     ]
+    },
+    {
+     "date": "Fri 20.11.",
+     "message": null,
+     "data": [
+      {
+       "name": "Spicy tacos",
+       "ingredients": "Crushed tomatoes (tomato (Italy), tomato",
+       "nutrition": "Energy 554kJ, energy 132kcal, fat 4.9g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "Veg"
+        ],
+        "1": [
+         "soybens",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      },
+      {
+       "name": "Fish balls, lemon dipp with herbs",
+       "ingredients": "FISH ball (Caught GREAT SILVER SMELT 56 ",
+       "nutrition": "Energy 970kJ, energy 236kcal, fat 17g, o",
+       "meta": {
+        "0": [
+         "G",
+         "L"
+        ],
+        "1": [
+         "eggs",
+         "fish",
+         "milk",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      },
+      {
+       "name": "Pork schnitzel and forest mushroom sauce",
+       "ingredients": "Schnitzel (pork sirloin (61 %), bread cr",
+       "nutrition": "Energy 803kJ, energy 191kcal, fat 11g, o",
+       "meta": {
+        "0": [
+         "L"
+        ],
+        "1": [
+         "cereals containing gluten",
+         "milk",
+         "sulfur dioxide and sulfits",
+         "wheat"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": [],
+        "name": "Buffet"
+       }
+      }
+     ]
+    },
+    {
+     "date": "Sat 21.11.",
+     "message": null,
+     "data": []
+    },
+    {
+     "date": "Sun 22.11.",
+     "message": null,
+     "data": []
+    }
+   ],
+   "id": 5589,
+   "name": "Olivia staff restaurant",
+   "areacode": 1
+  }
+ },
+ {
+  "id": 2500,
+  "title": "Exactum",
+  "slug": "exactum",
+  "permalink": "https://unicafe.fi/en/restaurants/exactum/",
+  "location": [
+   {
+    "id": 272,
+    "name": "Kumpula"
+   }
+  ],
+  "address": "Gustaf Hällströmin katu 2b",
+  "visitingHours": "",
+  "blocksHtml": "",
+  "menuData": {
+   "email": "",
+   "phone": "",
+   "address": "",
+   "feedback_address": "",
+   "description": "Esteettömyys\n- sisäänkäynti: pääovesta oikealla hissi tai luiska, ravintolakerrokseen hissi (1. krs -> K kerros).\n- inva- wc ravintolasalissa.",
+   "visitingHours": {
+    "business": {
+     "name": null,
+     "items": [
+      {
+       "label": "Mon–Fri",
+       "hours": "9:00-14.00",
+       "closedException": false
+      },
+      {
+       "label": "Sat–Sun",
+       "hours": "Closed",
+       "closedException": false
+      }
+     ]
+    },
+    "breakfast": false,
+    "bistro": false,
+    "lounas": {
+     "name": null,
+     "items": [
+      {
+       "label": "Mon–Fri",
+       "hours": "11.00-14.00",
+       "closedException": false
+      },
+      {
+       "label": "Sat–Sun",
+       "hours": "Closed",
+       "closedException": false
+      }
+     ]
+    }
+   },
+   "menus": [
+    {
+     "date": "Mon 16.11.",
+     "message": null,
+     "data": [
+      {
+       "name": "Chipotle sweet potato soup & avocado foam",
+       "ingredients": "Sweet potato, water, red pepper cube (re",
+       "nutrition": "Energy 349kJ, energy 84kcal, fat 2.4g, o",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "oat",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      },
+      {
+       "name": "Unlimited vegan pepper steaks",
+       "ingredients": "Vegan hamburger patty (Water, pea protei",
+       "nutrition": "Energy 500kJ, energy 119kcal, fat 8.9g, ",
+       "meta": {
+        "0": [
+         "G",
+         "Veg"
+        ],
+        "1": [
+         "celery",
+         "mustard",
+         "oat",
+         "soybens",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      },
+      {
+       "name": "Salmon casserol with potato",
+       "ingredients": "Potato strips (potato), MILK based veget",
+       "nutrition": "Energy 529kJ, energy 127kcal, fat 6.2g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "L"
+        ],
+        "1": [
+         "fish",
+         "milk",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Lounas"
+       }
+      }
+     ]
+    },
+    {
+     "date": "Tue 17.11.",
+     "message": null,
+     "data": [
+      {
+       "name": "Sweet potato patties with roasted garlic sesame dip",
+       "ingredients": "Sweet potato patty (Sweet potato (41 %),",
+       "nutrition": "Energy 584kJ, energy 138kcal, fat 7.8g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "mustard",
+         "sesame seeds",
+         "soybens"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      },
+      {
+       "name": "Palsternakkasosekeitto",
+       "ingredients": "Potato (potato,antioxidant (SODIUM DISUL",
+       "nutrition": "Energy 256kJ, energy 61kcal, fat 2.0g, o",
+       "meta": {
+        "0": [
+         "G",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "oat",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      },
+      {
+       "name": "Broad bean in tomato and rucola sauce",
+       "ingredients": "Crushed tomatoes (tomato (Italy), tomato",
+       "nutrition": "Energy 363kJ, energy 87kcal, fat 2.8g, o",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "oat",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      }
+     ]
+    },
+    {
+     "date": "Wed 18.11.",
+     "message": null,
+     "data": [
+      {
+       "name": "Vegetable balls, tzaziki",
+       "ingredients": "Vegetable patty (Corn 57 %, yellow pea 2",
+       "nutrition": "Energy 646kJ, energy 155kcal, fat 5.8g, ",
+       "meta": {
+        "0": [
+         "G",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "oat",
+         "soybens"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      },
+      {
+       "name": "Vegetable hash & lingonberriesjam",
+       "ingredients": "OAT product (Oat base (water, gluten fre",
+       "nutrition": "Energy 503kJ, energy 121kcal, fat 7.1g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "oat",
+         "soybens"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      },
+      {
+       "name": "Indian lentilsoup",
+       "ingredients": "Water, red lentils (Red lentils), coconu",
+       "nutrition": "Energy 466kJ, energy 112kcal, fat 4.7g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "sulfur dioxide and sulfits"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      }
+     ]
+    },
+    {
+     "date": "Thu 19.11.",
+     "message": null,
+     "data": [
+      {
+       "name": "Mexican tomato soup",
+       "ingredients": "Water, crushed tomatoes (tomato (Italy),",
+       "nutrition": "Energy 260kJ, energy 62kcal, fat 1.7g, o",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "sulfur dioxide and sulfits"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      },
+      {
+       "name": "Butter bean balls with curry dip sauce and blackcurrant jam",
+       "ingredients": "Root vegetable and butter bean ball (Car",
+       "nutrition": "Energy 734kJ, energy 175kcal, fat 9.4g, ",
+       "meta": {
+        "0": [
+         "G",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "mustard",
+         "soybens"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      },
+      {
+       "name": "Miso-Mushroom Ratatouille",
+       "ingredients": "Vegetable mix (Grilled potato, grilled c",
+       "nutrition": "Energy 446kJ, energy 107kcal, fat 6.5g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "soybens",
+         "sulfur dioxide and sulfits",
+         "wheat"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      }
+     ]
+    },
+    {
+     "date": "Fri 20.11.",
+     "message": null,
+     "data": [
+      {
+       "name": "Mozambican nut and chickpea stew",
+       "ingredients": "Chick pea (rehydrated dried chickpeas (E",
+       "nutrition": "Energy 575kJ, energy 137kcal, fat 8.9g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "Veg",
+         "Ilmastovalinta"
+        ],
+        "1": [
+         "oat",
+         "peanuts",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": [
+         "Ilmastovalinta"
+        ]
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      },
+      {
+       "name": "Spicy tacos",
+       "ingredients": "Crushed tomatoes (tomato (Italy), tomato",
+       "nutrition": "Energy 505kJ, energy 121kcal, fat 4.3g, ",
+       "meta": {
+        "0": [
+         "G",
+         "KELA",
+         "Veg"
+        ],
+        "1": [
+         "soybens",
+         "sulfur dioxide and sulfits"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Vegaanilounas"
+       }
+      },
+      {
+       "name": "Fish seasoned with lime and parsley with wasabi–rocket sauce",
+       "ingredients": "Breaded FISH (Caught CODFISH (Gadus morh",
+       "nutrition": "Energy 711kJ, energy 170kcal, fat 5.6g, ",
+       "meta": {
+        "0": [
+         "KELA",
+         "L"
+        ],
+        "1": [
+         "cereals containing gluten",
+         "fish",
+         "milk",
+         "mustard",
+         "soybens",
+         "sulfur dioxide and sulfits",
+         "wheat"
+        ],
+        "2": []
+       },
+       "price": {
+        "value": {
+         "student": "3.10",
+         "graduate": "6.35",
+         "contract": "7.30",
+         "normal": "9.80",
+         "student_hyy": "3.10",
+         "graduate_hyy": "6.35"
+        },
+        "name": "Lounas"
+       }
+      }
+     ]
+    },
+    {
+     "date": "Sat 21.11.",
+     "message": null,
+     "data": []
+    },
+    {
+     "date": "Sun 22.11.",
+     "message": null,
+     "data": []
+    }
+   ],
+   "id": 2500,
+   "name": "Exactum",
+   "areacode": 1
+  }
+ }
+]

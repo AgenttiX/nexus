@@ -1,44 +1,44 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { render, screen } from '@testing-library/react'
+import { createMemoryHistory } from '@tanstack/react-router'
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { afterEach, expect, test, vi } from 'vitest'
 
 import { App } from './App'
+import { createAppRouter } from './router'
+import { mockApi, renderWithQuery } from './test-utils'
 
-function renderApp() {
-  const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
-  render(
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>,
-  )
-}
-
-function mockFetch(status: number, body: unknown = {}) {
-  vi.stubGlobal(
-    'fetch',
-    vi.fn(async () => new Response(JSON.stringify(body), { status })),
-  )
-}
+const alice = { id: 1, username: 'alice', first_name: '', last_name: '', email: '' }
 
 afterEach(() => {
   vi.unstubAllGlobals()
 })
 
-test('shows the signed-in user', async () => {
-  mockFetch(200, { id: 1, username: 'alice', first_name: '', last_name: '', email: '' })
-  renderApp()
-  expect(await screen.findByText('Signed in as alice.')).toBeInTheDocument()
+test('shows the application to a signed-in user', async () => {
+  mockApi({ 'GET /api/me/': { body: alice } })
+  renderWithQuery(<App />)
+  expect(await screen.findByText('Choose a section above.')).toBeInTheDocument()
+})
+
+test('navigates to the food page', async () => {
+  mockApi({
+    'GET /api/me/': { body: alice },
+    'GET /api/food/restaurants/': { body: [] },
+  })
+  const router = createAppRouter(createMemoryHistory({ initialEntries: ['/'] }))
+  renderWithQuery(<App router={router} />)
+  await userEvent.click(await screen.findByRole('link', { name: 'Food' }))
+  expect(await screen.findByText(/No menus have been fetched yet/)).toBeInTheDocument()
 })
 
 test('offers passkey sign-in when there is no session', async () => {
-  mockFetch(403)
-  renderApp()
+  mockApi({ 'GET /api/me/': { status: 403 } })
+  renderWithQuery(<App />)
   const link = await screen.findByRole('link', { name: 'Sign in with a passkey' })
   expect(link).toHaveAttribute('href', '/accounts/oidc/authentik/login/')
 })
 
 test('reports when the server cannot be reached', async () => {
-  mockFetch(500)
-  renderApp()
+  mockApi({})
+  renderWithQuery(<App />)
   expect(await screen.findByText(/could not be reached/)).toBeInTheDocument()
 })

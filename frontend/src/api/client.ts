@@ -1,6 +1,55 @@
-/** Minimal fetch wrapper for the Nexus REST API. Replaced by the generated OpenAPI client as features land. */
+/** Typed client for the Nexus REST API. The types in `schema.d.ts` are generated with `npm run gen:api`. */
+import createClient, { type Middleware } from 'openapi-fetch'
+
+import type { components, paths } from './schema'
+
+export type CurrentUser = components['schemas']['CurrentUser']
+export type Restaurant = components['schemas']['Restaurant']
+export type Dish = components['schemas']['Dish']
+export type Calendar = components['schemas']['Calendar']
+export type CalendarEvent = components['schemas']['Event']
+export type SleepRecord = components['schemas']['SleepRecord']
+export type SleepStats = components['schemas']['Stats']
+export type Digest = components['schemas']['Digest']
+export type NewsProfile = Required<components['schemas']['NewsProfile']>
+export type NewsSource = components['schemas']['Source']
+export type BankAccount = components['schemas']['BankAccount']
+export type Category = components['schemas']['Category']
+export type Transaction = components['schemas']['Transaction']
+export type FinanceSummary = components['schemas']['FinanceSummary']
+export type ImportBatch = components['schemas']['ImportBatch']
+export type Holding = components['schemas']['Holding']
+export type Portfolio = components['schemas']['Portfolio']
 
 export const LOGIN_URL = '/accounts/oidc/authentik/login/'
+
+const SAFE_METHODS = new Set(['GET', 'HEAD', 'OPTIONS'])
+
+export function csrfToken(cookies: string): string | undefined {
+  return cookies
+    .split('; ')
+    .find((cookie) => cookie.startsWith('csrftoken='))
+    ?.slice('csrftoken='.length)
+}
+
+/** Django rejects requests that change data unless they echo the CSRF cookie in a header. */
+const csrf: Middleware = {
+  onRequest({ request }) {
+    const token = csrfToken(document.cookie)
+    if (!SAFE_METHODS.has(request.method) && token) {
+      request.headers.set('X-CSRFToken', token)
+    }
+    return request
+  },
+}
+
+export const api = createClient<paths>({
+  baseUrl: window.location.origin,
+  credentials: 'same-origin',
+  // Looked up on every call, so that tests can replace the global fetch.
+  fetch: (request) => globalThis.fetch(request),
+})
+api.use(csrf)
 
 export class ApiError extends Error {
   readonly status: number
@@ -11,33 +60,19 @@ export class ApiError extends Error {
   }
 }
 
-export interface CurrentUser {
-  id: number
-  username: string
-  first_name: string
-  last_name: string
-  email: string
-}
-
-export async function apiGet<T>(path: string): Promise<T> {
-  const response = await fetch(`/api/${path}`, {
-    credentials: 'same-origin',
-    headers: { Accept: 'application/json' },
-  })
-  if (!response.ok) {
-    throw new ApiError(response.status)
+/** Unwraps an openapi-fetch result, turning error responses into exceptions for TanStack Query. */
+export function unwrap<T>(result: { data?: T; response: Response }): T {
+  if (!result.response.ok) {
+    throw new ApiError(result.response.status)
   }
-  return (await response.json()) as T
+  return result.data as T
 }
 
 /** Returns the signed-in user, or null when there is no session. */
 export async function fetchCurrentUser(): Promise<CurrentUser | null> {
-  try {
-    return await apiGet<CurrentUser>('me/')
-  } catch (error) {
-    if (error instanceof ApiError && (error.status === 401 || error.status === 403)) {
-      return null
-    }
-    throw error
+  const result = await api.GET('/api/me/')
+  if (result.response.status === 401 || result.response.status === 403) {
+    return null
   }
+  return unwrap(result)
 }
